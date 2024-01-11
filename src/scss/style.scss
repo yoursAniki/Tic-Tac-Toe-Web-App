@@ -105,7 +105,7 @@ html {
 .game__board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 18px;
+  grid-gap: 8px;
   width: 320px;
   height: 300px;
   padding: 10px;
@@ -128,6 +128,7 @@ html {
     background: #5A1E76;
     transition: .2s linear;
   }
+
   &:active {
     background: #51196b;
   }
@@ -167,9 +168,7 @@ html {
   }
 }
 
-.game__board-size {
-
-}
+.game__board-size {}
 
 .game__start-button {
   margin: 0 0 100px;
@@ -197,6 +196,7 @@ html {
     background: #C5A0D7;
     transition: .2s linear;
   }
+
   &:active {
     background: #9155af;
   }
