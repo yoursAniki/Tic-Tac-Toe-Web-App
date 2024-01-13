@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 html {
   background: #5A1E76;
@@ -105,13 +106,17 @@ html {
 .game__board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 18px;
-  width: 320px;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 8px;
+  width: 300px;
   height: 300px;
   padding: 10px;
+  font-size: 72px;
 }
 
 .cell {
+  color: var(--g11-color, #48D2FE);
+  font-family: 'Roboto', sans-serif;
   background: #43115B;
   border-radius: 7px;
 
@@ -128,9 +133,15 @@ html {
     background: #5A1E76;
     transition: .2s linear;
   }
+
   &:active {
     background: #51196b;
   }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: inherit;
 }
 
 .game__board-choice {
@@ -167,9 +178,7 @@ html {
   }
 }
 
-.game__board-size {
-
-}
+.game__board-size {}
 
 .game__start-button {
   margin: 0 0 100px;
@@ -197,6 +206,7 @@ html {
     background: #C5A0D7;
     transition: .2s linear;
   }
+
   &:active {
     background: #9155af;
   }
