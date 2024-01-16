@@ -12,6 +12,8 @@ let cellsArray;
 let currentCol;
 let currentRow;
 
+let cellsCounter;
+
 const createArrayForBoard = size => {
 	boardArray = [];
 	cellsArray = document.querySelectorAll(".cell");
@@ -23,13 +25,6 @@ const createArrayForBoard = size => {
 		}
 	}
 };
-
-// const initializeCell = () => {
-//   cellsArray = document.querySelectorAll('.cell');
-//   cellsArray.forEach(currentCell => {
-//     currentCell.addEventListener('click', clickCell)
-//   })
-// }
 
 const initializeIndexCell = () => {
 	for (let row = 0; row < boardArray.length; row++) {
@@ -90,7 +85,6 @@ const createBoard = () => {
 	}
 
 	createArrayForBoard(size);
-	// initializeCell();
 	initializeIndexCell();
 };
 
@@ -116,8 +110,6 @@ const clickCell = function () {
 		return;
 	}
 	this.textContent = currentPlayer;
-	// const cellNumber = this.dataset.cellNumber
-	// boardArray[cellNumber] = currentPlayer // только в случае одномерного массива
 	if (isGameOver(currentRow, currentCol, currentPlayer)) {
 		return finishGame();
 	}
@@ -130,20 +122,21 @@ const changePlayer = () => {
 
 const startGame = function () {
 	isGameStarted = true;
-	// cellsArray.forEach(currentCell => currentCell.textContent = '') // только в случае одномерного массива
 	currentPlayer = players.x;
+	cellsCounter = 0
 };
 
 let boardSize;
 
-
 const drawScore = document.querySelector(".draw__score");
 let drawCount = drawScore.textContent; //todo пофиксить ничью
+
 function isGameOver(row, col, player) {
 	let horizontalWin = true;
 	let verticalWin = true;
 	let diagonalWin1 = true;
 	let diagonalWin2 = true;
+	cellsCounter++;
 
 	// Проверка горизонтальной линии
 	for (let i = 0; i < boardSize; i++) {
@@ -176,9 +169,13 @@ function isGameOver(row, col, player) {
 			break;
 		}
 	}
-  if (horizontalWin || verticalWin || diagonalWin1 || diagonalWin2) {
-    isGameStarted = false;
-  }
+	if (horizontalWin || verticalWin || diagonalWin1 || diagonalWin2) {
+		isGameStarted = false;
+	}
+	if ((cellsCounter === boardSize * boardSize) && !(horizontalWin || verticalWin || diagonalWin1 || diagonalWin2)) {
+		drawCount++;
+		drawScore.textContent = drawCount;
+	}
 	return horizontalWin || verticalWin || diagonalWin1 || diagonalWin2;
 }
 
@@ -201,10 +198,6 @@ const finishGame = () => {
 		case players.o:
 			playerOCount++;
 			playerOScore.textContent = playerOCount;
-			break;
-		default:
-			drawCount++;
-			drawScore.textContent = drawCount;
 			break;
 	}
 };
