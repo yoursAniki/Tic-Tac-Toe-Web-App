@@ -59,6 +59,9 @@ const changeFontSize = size => {
 		case "5":
 			board.style.fontSize = "44px";
 			break;
+		case "6":
+			board.style.fontSize = "36px";
+			break;
 		case "7":
 			board.style.fontSize = "30px";
 			break;
