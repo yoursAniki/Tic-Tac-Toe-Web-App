@@ -137,22 +137,28 @@ html {
   &.o {
     color: #E2BE00;
   }
+
   &.x {
     color: var(--g11-color, #48D2FE);
   }
+
   &.winner-cell.x {
     background: var(--g11-color, #48D2FE);
   }
+
   &.winner-cell.o {
     background: var(--g11-color, #E2BE00);
   }
+
   &.unlocked:hover {
     background: #5A1E76;
     transition: .2s linear;
   }
+
   &.unlocked:active {
     background: #51196b;
   }
+
   &.draw {
     background: #BCDBF9;
   }
@@ -195,7 +201,7 @@ html {
 .game__board-size {}
 
 .game__start-button {
-  margin: 0 0 100px;
+  margin: 0 0 70px;
   padding: 14px 28px;
   border-radius: 10px;
   background: #F4F6F5;

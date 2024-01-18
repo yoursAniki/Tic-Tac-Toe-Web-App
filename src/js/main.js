@@ -96,7 +96,7 @@ slider.addEventListener("input", changeSize);
 
 // Запуск игры
 
-let winnerCells = []
+let winnerCells = [];
 
 const players = {
 	x: "x",
@@ -114,12 +114,12 @@ const clickCell = function () {
 		return;
 	}
 	if (currentPlayer === players.o) {
-		this.classList.add('o')
+		this.classList.add("o");
 	} else {
-		this.classList.add('x')
+		this.classList.add("x");
 	}
 	this.textContent = currentPlayer;
-	this.classList.remove('unlocked')
+	this.classList.remove("unlocked");
 	if (isGameOver(currentRow, currentCol, currentPlayer)) {
 		return finishGame();
 	}
@@ -131,11 +131,11 @@ const changePlayer = () => {
 };
 
 const startGame = function () {
-	winnerCells.splice(0)
+	winnerCells.splice(0);
 	isGameStarted = true;
 	currentPlayer = players.x;
 	cellsCounter = 0;
-	cellsArray.forEach(el => el.classList.add('unlocked'))
+	cellsArray.forEach(el => el.classList.add("unlocked"));
 };
 
 let boardSize;
@@ -149,7 +149,7 @@ function isGameOver(row, col, player) {
 	let diagonalWin1 = true;
 	let diagonalWin2 = true;
 	cellsCounter++;
-	winnerCells.splice(0)
+	winnerCells.splice(0);
 
 	// Проверка горизонтальной линии
 	for (let i = 0; i < boardSize; i++) {
@@ -157,7 +157,7 @@ function isGameOver(row, col, player) {
 			horizontalWin = false;
 			break;
 		} else {
-			winnerCells.push(boardArray[row][i])
+			winnerCells.push(boardArray[row][i]);
 		}
 	}
 
@@ -167,7 +167,7 @@ function isGameOver(row, col, player) {
 			verticalWin = false;
 			break;
 		} else {
-			winnerCells.push(boardArray[i][col])
+			winnerCells.push(boardArray[i][col]);
 		}
 	}
 
@@ -177,7 +177,7 @@ function isGameOver(row, col, player) {
 			diagonalWin1 = false;
 			break;
 		} else {
-			winnerCells.push(boardArray[i][i])
+			winnerCells.push(boardArray[i][i]);
 		}
 	}
 
@@ -187,10 +187,9 @@ function isGameOver(row, col, player) {
 			diagonalWin2 = false;
 			break;
 		} else {
-			winnerCells.push(boardArray[i][boardSize - i - 1])
+			winnerCells.push(boardArray[i][boardSize - i - 1]);
 		}
 	}
-
 
 	if (horizontalWin || verticalWin || diagonalWin1 || diagonalWin2) {
 		isGameStarted = false;
@@ -202,14 +201,21 @@ function isGameOver(row, col, player) {
 		drawCount++;
 		drawScore.textContent = drawCount;
 		cellsArray.forEach(el => {
-			el.classList.remove('unlocked')
-			el.classList.add('draw')
-		})
+			el.classList.remove("unlocked");
+			el.classList.add("draw");
+		});
 	}
 	return horizontalWin || verticalWin || diagonalWin1 || diagonalWin2;
 }
 
 startButton.addEventListener("click", startGame);
+// Старт при нажатии Enter
+document.addEventListener("keydown", function (event) {
+	if (event.key === "Enter") {
+		createBoard();
+		startGame();
+	}
+});
 
 // Увеличение счетчика при победе
 
@@ -231,9 +237,9 @@ const finishGame = () => {
 			break;
 	}
 	winnerCells.forEach(el => {
-		el.classList.add('winner-cell')
-	})
+		el.classList.add("winner-cell");
+	});
 	cellsArray.forEach(el => {
-		el.classList.remove('unlocked')
-	})
+		el.classList.remove("unlocked");
+	});
 };
