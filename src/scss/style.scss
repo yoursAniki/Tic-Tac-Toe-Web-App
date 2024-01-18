@@ -149,6 +149,12 @@ html {
   &.x {
     color: var(--g11-color, #48D2FE);
   }
+  &.winner-cell.x {
+    background: var(--g11-color, #48D2FE);
+  }
+  &.winner-cell.o {
+    background: var(--g11-color, #E2BE00);
+  }
 }
 
 .game__board-choice {

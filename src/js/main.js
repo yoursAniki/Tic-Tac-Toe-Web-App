@@ -83,7 +83,6 @@ const createBoard = () => {
 	for (let i = 0; i < size * size; i++) {
 		const cell = document.createElement("div");
 		cell.classList.add("cell");
-		cell.setAttribute("data-cell-number", `${i}`);
 		board.appendChild(cell);
 	}
 
@@ -96,6 +95,8 @@ startButton.addEventListener("click", createBoard);
 slider.addEventListener("input", changeSize);
 
 // Запуск игры
+
+let winnerCells = []
 
 const players = {
 	x: "x",
@@ -129,6 +130,7 @@ const changePlayer = () => {
 };
 
 const startGame = function () {
+	winnerCells.splice(0)
 	isGameStarted = true;
 	currentPlayer = players.x;
 	cellsCounter = 0;
@@ -145,12 +147,15 @@ function isGameOver(row, col, player) {
 	let diagonalWin1 = true;
 	let diagonalWin2 = true;
 	cellsCounter++;
+	winnerCells.splice(0)
 
 	// Проверка горизонтальной линии
 	for (let i = 0; i < boardSize; i++) {
 		if (boardArray[row][i].textContent !== player) {
 			horizontalWin = false;
 			break;
+		} else {
+			winnerCells.push(boardArray[row][i])
 		}
 	}
 
@@ -159,6 +164,8 @@ function isGameOver(row, col, player) {
 		if (boardArray[i][col].textContent !== player) {
 			verticalWin = false;
 			break;
+		} else {
+			winnerCells.push(boardArray[i][col])
 		}
 	}
 
@@ -167,6 +174,8 @@ function isGameOver(row, col, player) {
 		if (boardArray[i][i].textContent !== player) {
 			diagonalWin1 = false;
 			break;
+		} else {
+			winnerCells.push(boardArray[i][i])
 		}
 	}
 
@@ -175,8 +184,12 @@ function isGameOver(row, col, player) {
 		if (boardArray[i][boardSize - i - 1].textContent !== player) {
 			diagonalWin2 = false;
 			break;
+		} else {
+			winnerCells.push(boardArray[i][boardSize - i - 1])
 		}
 	}
+
+
 	if (horizontalWin || verticalWin || diagonalWin1 || diagonalWin2) {
 		isGameStarted = false;
 	}
@@ -211,4 +224,7 @@ const finishGame = () => {
 			playerOScore.textContent = playerOCount;
 			break;
 	}
+	winnerCells.forEach(el => {
+		el.classList.add('winner-cell')
+	})
 };
