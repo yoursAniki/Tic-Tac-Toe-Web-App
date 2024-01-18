@@ -46,7 +46,7 @@ const changeSize = () => {
 	sliderValue.textContent = `${size}x${size}`;
 };
 
-// Изменение размера шрифта (чтобы ячейки были одного)
+// Изменение размера шрифта (чтобы ячейки были одной высоты)
 
 const changeFontSize = size => {
 	switch (size.toString()) {
@@ -112,6 +112,11 @@ const clickCell = function () {
 	if (this.textContent) {
 		return;
 	}
+	if (currentPlayer === players.o) {
+		this.classList.add('o')
+	} else {
+		this.classList.add('x')
+	}
 	this.textContent = currentPlayer;
 	if (isGameOver(currentRow, currentCol, currentPlayer)) {
 		return finishGame();
@@ -126,13 +131,13 @@ const changePlayer = () => {
 const startGame = function () {
 	isGameStarted = true;
 	currentPlayer = players.x;
-	cellsCounter = 0
+	cellsCounter = 0;
 };
 
 let boardSize;
 
 const drawScore = document.querySelector(".draw__score");
-let drawCount = drawScore.textContent; //todo пофиксить ничью
+let drawCount = drawScore.textContent;
 
 function isGameOver(row, col, player) {
 	let horizontalWin = true;
@@ -175,7 +180,10 @@ function isGameOver(row, col, player) {
 	if (horizontalWin || verticalWin || diagonalWin1 || diagonalWin2) {
 		isGameStarted = false;
 	}
-	if ((cellsCounter === boardSize * boardSize) && !(horizontalWin || verticalWin || diagonalWin1 || diagonalWin2)) {
+	if (
+		cellsCounter === boardSize * boardSize &&
+		!(horizontalWin || verticalWin || diagonalWin1 || diagonalWin2)
+	) {
 		drawCount++;
 		drawScore.textContent = drawCount;
 	}
