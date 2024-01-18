@@ -129,15 +129,6 @@ html {
 
   cursor: pointer;
 
-  &:hover {
-    background: #5A1E76;
-    transition: .2s linear;
-  }
-
-  &:active {
-    background: #51196b;
-  }
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,6 +145,16 @@ html {
   }
   &.winner-cell.o {
     background: var(--g11-color, #E2BE00);
+  }
+  &.unlocked:hover {
+    background: #5A1E76;
+    transition: .2s linear;
+  }
+  &.unlocked:active {
+    background: #51196b;
+  }
+  &.draw {
+    background: #BCDBF9;
   }
 }
 

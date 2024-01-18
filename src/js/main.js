@@ -119,6 +119,7 @@ const clickCell = function () {
 		this.classList.add('x')
 	}
 	this.textContent = currentPlayer;
+	this.classList.remove('unlocked')
 	if (isGameOver(currentRow, currentCol, currentPlayer)) {
 		return finishGame();
 	}
@@ -134,6 +135,7 @@ const startGame = function () {
 	isGameStarted = true;
 	currentPlayer = players.x;
 	cellsCounter = 0;
+	cellsArray.forEach(el => el.classList.add('unlocked'))
 };
 
 let boardSize;
@@ -199,6 +201,10 @@ function isGameOver(row, col, player) {
 	) {
 		drawCount++;
 		drawScore.textContent = drawCount;
+		cellsArray.forEach(el => {
+			el.classList.remove('unlocked')
+			el.classList.add('draw')
+		})
 	}
 	return horizontalWin || verticalWin || diagonalWin1 || diagonalWin2;
 }
@@ -226,5 +232,8 @@ const finishGame = () => {
 	}
 	winnerCells.forEach(el => {
 		el.classList.add('winner-cell')
+	})
+	cellsArray.forEach(el => {
+		el.classList.remove('unlocked')
 	})
 };
