@@ -4,7 +4,7 @@ If you want to play unusual tic-tac-toe(with the ability to change the size of t
 
 #
 
-When making this app, I started from [this template](https://www.figma.com/community/file/1254192154560627135).
+The design is made according to [this template](https://www.figma.com/community/file/1254192154560627135).
 
 You can try my app on [Github pages](https://yoursaniki.github.io/Tic-Tac-Toe-Web-App/).
 
